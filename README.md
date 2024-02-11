@@ -1,4 +1,4 @@
-# MERN_Terraform_Ansible
+# Deploying MERN application using Terraform
 
 We are deploying a MERN application using Terraform and Ansible both.
 
@@ -339,4 +339,48 @@ output "adarsh_database_terraform_instance_ip" {
 
    - Output the public IP of the web server EC2 instance.
    ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/1ba4f32d-3269-4a6a-b986-958299774d80)
+
+
+# Deploying MERN application using Ansible
+
+
+Installing Ansible on Ubuntu
+
+```
+sudo apt update
+sudo apt install ansible
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+ansible --version
+```
+
+![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/83677830-0faa-4677-aa58-c8a6379aefb7)
+
+1. Ansible Configuration:
+
+   - Configure Ansible to communicate with the AWS EC2 instances.
+     
+
+2. Web Server Setup:
+
+   - Write an Ansible playbook to install Node.js and NPM on the web server.
+
+   - Clone the MERN application repository and install dependencies.
+
+3. Database Server Setup:
+
+   - Install and configure MongoDB on the database server using Ansible.
+
+   - Secure the MongoDB instance and create necessary users and databases.
+
+4. Application Deployment:
+
+   - Configure environment variables and start the Node.js application.
+
+   - Ensure the React frontend communicates with the Express backend.
+
+5. Security Hardening:
+
+   - Harden the security by configuring firewalls and security groups.
+
+   - Implement additional security measures as needed (e.g., SSH key pairs, disabling root login).
 
