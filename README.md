@@ -16,7 +16,12 @@ Part 1: Infrastructure Setup with Terraform
       
       ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/ce02d397-f7fc-4501-a746-52092ed7c228)
       
-      
+
+      Configure aws using the "aws configure" command before that We have to download the AWS Console access key.
+
+      For that, go to My Security Credentials  ( Top right ) > choose Access keys > Create New Access Key, then download that key to the          local machine.
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/27c634e4-5db4-437a-8c2b-8ddcd7533b6a)
+
       ```
       aws configure
       ```
@@ -29,9 +34,21 @@ Part 1: Infrastructure Setup with Terraform
 
 
    - Initialize a new Terraform project targeting AWS.
-
-
-
+  
+      Install Terraform on Windows using the below command
+      ```
+      choco install terraform
+      ```
+      Test it using
+      ```
+      terraform -help
+      ```
+      Create a new directory for the project
+      ```
+      mkdir terraform-aws
+      cd terraform-aws
+      touch main.tf
+      ```
 
 2. VPC and Network Configuration:
 
