@@ -89,17 +89,40 @@ Part 1: Infrastructure Setup with Terraform
       cd terraform-aws
       touch main.tf
       ```
+      Initialize Terraform
+      ```
+      terraform init
+      ```
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/494aa40e-0bb0-49ae-acad-0a666bee4ba9)
+
+      Preview Changes
+      ```
+      terraform plan
+      ```
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/f4cac74f-4d8a-4f81-a971-c6bab3d1d576)
+
+      Apply Changes
+      ```
+      terraform apply
+      ```
 
 3. VPC and Network Configuration:
 
    - Create an AWS VPC with two subnets: one public and one private.
+   
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/56ae0986-ba1a-4f23-bde1-a27f1171797b)
+
 
    - Set up an Internet Gateway and a NAT Gateway.
+
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/4a33c414-21ef-42b2-bb0a-b76d90172c5f)
+
 
    - Configure route tables for both subnets.
 
 
 
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/e5a1f76f-518b-470e-a967-0f81afe5ff80)
 
 
 
@@ -107,24 +130,37 @@ Part 1: Infrastructure Setup with Terraform
 
    - Launch two EC2 instances: one in the public subnet (for the web server) and another in the private subnet (for the database).
 
+   EC2 instance in Public subnet
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/2c772f45-74dd-434d-bd87-9a21a38c0e3f)
+
+
+   EC2 instance in a private subnet
+   
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/b102a522-ae56-47fb-986a-85f7496db8c5)
+
+
    - Ensure both instances are accessible via SSH (public instance only accessible from your IP).
 
 
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/5d923660-7d5f-493e-9060-0688b2102a53)
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/47e76795-aad2-47b0-b830-aa1d0cef77c4)
 
 
 
 
-5. Security Groups and IAM Roles:
+6. Security Groups and IAM Roles:
 
    - Create necessary security groups for web and database servers.
 
    - Set up IAM roles for EC2 instances with required permissions.
 
 
+   ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/d41ddab8-9a64-4fe7-90a9-1e8287c39006)
 
 
 
 
-6. Resource Output:
+
+7. Resource Output:
 
    - Output the public IP of the web server EC2 instance.
