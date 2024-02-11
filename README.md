@@ -8,9 +8,16 @@ Part 1: Infrastructure Setup with Terraform
 
    - Configure AWS CLI and authenticate with your AWS account.
 
-      Install the awscli on local machine  from 
+      Install the awscli on windows machine  from 
       ```
       https://awscli.amazonaws.com/AWSCLIV2-version.number.msi
+      ```
+      On Ubuntu from
+      ```
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      sudo apt install unzip
+      unzip awscliv2.zip
+      sudo ./aws/install
       ```
       test it using "aws --version" if response is like below then aws is properly configured.
       
@@ -39,6 +46,39 @@ Part 1: Infrastructure Setup with Terraform
       ```
       choco install terraform
       ```
+      Install Terraform on Ubuntu using the below command 
+      ```
+      sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+      ```
+      Install the HashiCorp GPG key.
+      ```
+      wget -O- https://apt.releases.hashicorp.com/gpg | \
+      gpg --dearmor | \
+      sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+      ```
+      Verify the key's fingerprint.
+      ```
+      gpg --no-default-keyring \
+      --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+      --fingerprint
+      ```
+      Add the official HashiCorp repository to your system.
+      ```
+      echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+      https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+      sudo tee /etc/apt/sources.list.d/hashicorp.list
+      ```
+      Download the package information from HashiCorp.
+      ```
+      sudo apt update
+      ```
+      Install Terraform from the new repository.
+      ```
+      sudo apt-get install terraform
+      ```
+      ```
+         
+      ```
       Test it using
       ```
       terraform -help
@@ -50,7 +90,7 @@ Part 1: Infrastructure Setup with Terraform
       touch main.tf
       ```
 
-2. VPC and Network Configuration:
+3. VPC and Network Configuration:
 
    - Create an AWS VPC with two subnets: one public and one private.
 
@@ -63,7 +103,7 @@ Part 1: Infrastructure Setup with Terraform
 
 
 
-3. EC2 Instance Provisioning:
+4. EC2 Instance Provisioning:
 
    - Launch two EC2 instances: one in the public subnet (for the web server) and another in the private subnet (for the database).
 
@@ -74,7 +114,7 @@ Part 1: Infrastructure Setup with Terraform
 
 
 
-4. Security Groups and IAM Roles:
+5. Security Groups and IAM Roles:
 
    - Create necessary security groups for web and database servers.
 
@@ -85,6 +125,6 @@ Part 1: Infrastructure Setup with Terraform
 
 
 
-5. Resource Output:
+6. Resource Output:
 
    - Output the public IP of the web server EC2 instance.
