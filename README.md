@@ -26,7 +26,8 @@ Part 1: Infrastructure Setup with Terraform
 
       Configure aws using the "aws configure" command before that We have to download the AWS Console access key.
 
-      For that, go to My Security Credentials  ( Top right ) > choose Access keys > Create New Access Key, then download that key to the          local machine.
+      For that, go to My Security Credentials  ( Top right ) > choose Access keys > Create New Access Key, then download that key to the local machine.
+     
       ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/27c634e4-5db4-437a-8c2b-8ddcd7533b6a)
 
       ```
@@ -306,6 +307,7 @@ Part 1: Infrastructure Setup with Terraform
    ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/4a33c414-21ef-42b2-bb0a-b76d90172c5f)
 
    - Configure route tables for both subnets.
+     
    ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/e5a1f76f-518b-470e-a967-0f81afe5ff80)
 
 
@@ -338,6 +340,7 @@ Part 1: Infrastructure Setup with Terraform
 7. Resource Output:
 
    - Output the public IP of the web server EC2 instance.
+   
    ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/1ba4f32d-3269-4a6a-b986-958299774d80)
 
 
@@ -434,6 +437,10 @@ Part 1: Infrastructure Setup with Terraform
 
    - Clone the MERN application repository and install dependencies.
   
+   - Configure environment variables and start the Node.js application.
+
+   - Ensure the React frontend communicates with the Express backend.
+  
       ```
       - hosts: Demo
         user: root
@@ -491,20 +498,7 @@ Part 1: Infrastructure Setup with Terraform
 
       ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/3d93f0cd-9367-4f4c-9711-b701c8d626df)
 
-     
 
-
-4. Database Server Setup:
-
-   - Install and configure MongoDB on the database server using Ansible.
-
-   - Secure the MongoDB instance and create necessary users and databases.
-
-5. Application Deployment:
-
-   - Configure environment variables and start the Node.js application.
-
-   - Ensure the React frontend communicates with the Express backend.
 
 6. Security Hardening:
 
