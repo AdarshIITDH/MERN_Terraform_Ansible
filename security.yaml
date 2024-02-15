@@ -1,0 +1,31 @@
+#creating security of the AWS EC2 instance
+---
+- name: Harden security of AWS EC2 instance
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    region: 'ap-south-1'
+  tasks:
+    - name: Create security group
+      ec2_group:
+        name: my-security-group
+        description: Security group for my EC2 instance
+        vpc_id: vpc-0d162cc8011c8aef4
+        region: 'ap-south-1'
+        access_key: AKIAYS2NQZ3RGNLQPPEP
+        secret_key: 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
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0  # Restrict SSH access to specific IP ranges if possible
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 3000
+            to_port: 3000
+            cidr_ip: 0.0.0.0/0
+        state: present
+
