@@ -375,7 +375,7 @@ Part 1: Infrastructure Setup with Terraform
       172.31.40.147 #private IP of the worker nodes
       ```
       ```
-      # nano ansible.cfg
+      nano ansible.cfg
       # some basic default values...
       [default]
       
@@ -398,7 +398,7 @@ Part 1: Infrastructure Setup with Terraform
       # uncomment this to disable SSH key host checking
       host_key_checking = False
       ```
-     create a root passwd in all worker node using passwd root
+     create a root passwd in all worker node using "passwd root"
      
       On Worker nodes
      ```
@@ -413,8 +413,8 @@ Part 1: Infrastructure Setup with Terraform
      ```
      Now on Control Plane
      ```
-     ssh-keygen
-     ssh-copy-id root@<private ip of workernode>
+     ssh-keygen  # to generate the public key of the control node
+     ssh-copy-id root@<private ip of workernode>   # copy the generate key to the worker nodes
      ```
      After all the confirguration Lets test it.
      ```
