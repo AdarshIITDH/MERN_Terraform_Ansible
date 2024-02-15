@@ -420,6 +420,8 @@ Part 1: Infrastructure Setup with Terraform
      ```
      ansible all -m ping
      ```
+     ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/a30ec6c2-742a-4a41-9200-5c0d68747764)
+
      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/a111a714-f113-4e81-9174-0e4ec607fe17)
 
 
@@ -431,6 +433,66 @@ Part 1: Infrastructure Setup with Terraform
    - Write an Ansible playbook to install Node.js and NPM on the web server.
 
    - Clone the MERN application repository and install dependencies.
+  
+      ```
+      - hosts: Demo
+        user: root
+        gather_facts: 'yes'
+        become: 'yes'
+        tasks:
+          - name: Update apt cache
+            apt:
+              update_cache: 'yes'
+          - name: Ansible shell module multiple commands
+            shell: 'curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -'
+          - name: Install Node.js dependencies
+            apt:
+              name: '{{ item }}'
+              state: present
+            loop:
+              - curl
+              - software-properties-common
+              - nodejs
+              - wget
+              - curl
+          - name: Discard local modifications in the destination directory
+            command: git reset --hard HEAD
+            args:
+              chdir: /home/ubuntu/mern/
+            ignore_errors: yes
+          - name: Clone MERN application repository
+            git:
+              repo: 'https://github.com/UnpredictablePrashant/TravelMemory.git'
+              dest: /home/ubuntu/mern
+          - name: Create .env file with MongoDB URI and port
+            ansible.builtin.lineinfile:
+              path: /home/ubuntu/mern/backend/.env
+              line: MONGO_URI= 'mongodb+srv://prashantdey:prashantkrdey@prashantdey.00jtczg.mongodb.net/msmernsample'
+              create: 'yes'
+          - name: Add port to .env file
+            ansible.builtin.lineinfile:
+              path: /home/ubuntu/mern/backend/.env
+              line: PORT=3000
+              insertafter: MONGO_URI='ENTER_YOUR_MONGO_URL'
+          - name: Install dependencies for MERN application backend
+            command: npm install
+            args:
+              chdir: /home/ubuntu/mern/backend
+          - name: Run the MERN application backend
+            command: node index.js
+      ```
+     ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/fa7bfc36-3bbb-4a27-812b-a00cb824892c)
+
+     ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/dcb79aa4-4fbc-40bb-87de-c9ef6d2de6c2)
+
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/d4f14f9d-95c8-464d-9815-bb489af60e69)
+
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/03ec61fc-bf4d-40e6-a7ad-939016899971)
+
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/3d93f0cd-9367-4f4c-9711-b701c8d626df)
+
+     
+
 
 4. Database Server Setup:
 
