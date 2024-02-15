@@ -512,3 +512,43 @@ Part 1: Infrastructure Setup with Terraform
 
    - Implement additional security measures as needed (e.g., SSH key pairs, disabling root login).
 
+    ```
+    ---
+      - name: Harden security of AWS EC2 instance
+        hosts: localhost
+        gather_facts: yes
+        vars:
+          region: 'ap-south-1'
+        tasks:
+          - name: Create security group
+            ec2_group:
+              name: my-security-group
+              description: Security group for my EC2 instance
+              vpc_id: vpc-0d162cc8011c8aef4
+              region: 'ap-south-1'
+              access_key: AKIAYS2NQZ3RGNLQPPEP
+              secret_key: 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
+              rules:
+                - proto: tcp
+                  from_port: 22
+                  to_port: 22
+                  cidr_ip: 0.0.0.0/0  # Restrict SSH access to specific IP ranges if possible
+                - proto: tcp
+                  from_port: 80
+                  to_port: 80
+                  cidr_ip: 0.0.0.0/0
+                - proto: tcp
+                  from_port: 3000
+                  to_port: 3000
+                  cidr_ip: 0.0.0.0/0
+              state: present
+    ```
+ 
+     ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/26907d68-2e80-4ba0-9005-334e04e2961d)
+
+     ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/dff6dfcf-066b-4359-9640-8b13bbdf0be6)
+
+      ![image](https://github.com/AdarshIITDH/MERN_Terraform_Ansible/assets/60352729/3ba5826b-a27d-4b3a-9420-ed31515081d4)
+
+
+
