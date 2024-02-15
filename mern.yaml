@@ -1,5 +1,4 @@
 #deploying mern application using Ansible
----
 - hosts: Demo
   user: root
   gather_facts: 'yes'
@@ -37,11 +36,28 @@
     - name: Add port to .env file
       ansible.builtin.lineinfile:
         path: /home/ubuntu/mern/backend/.env
-        line: PORT=3000
+        line: PORT=3001
         insertafter: MONGO_URI='ENTER_YOUR_MONGO_URL'
     - name: Install dependencies for MERN application backend
       command: npm install
       args:
         chdir: /home/ubuntu/mern/backend
-    - name: Run the MERN application backend
+   - name: Run the MERN application backend
       command: node index.js
+      args:
+        chdir: /home/ubuntu/mern/backend/
+    - name: Install dependencies for MERN application frontend
+      command: npm install
+      args:
+        chdir: /home/ubuntu/mern/frontend
+
+    - name: Configure baseUrl in url.js
+      ansible.builtin.replace:
+        path: /home/ubuntu/mern/frontend/src/url.js
+        regexp: 'export const baseUrl = .*'
+        replace: 'export const baseUrl = "http://localhost:3001"'
+
+    - name: Run the MERN application frontend
+      command: npm start
+      args:
+        chdir: /home/ubuntu/mern/frontend/
