@@ -512,6 +512,18 @@ Part 1: Infrastructure Setup with Terraform
 
    - Implement additional security measures as needed (e.g., SSH key pairs, disabling root login).
 
+
+    For connecting ansible to AWS resoucrce we need to install following pacakges on the ansible control node.
+   ```
+   apt install python3-pip
+   pip install awscli 
+   pip install boto
+   pip install boto3
+   pip install bs4
+   ansible-galaxy collection install community.aws
+   ansible-galaxy collection install amazon.aws:==3.3.1 --force
+   ```
+
     ```
     ---
       - name: Harden security of AWS EC2 instance
@@ -526,8 +538,8 @@ Part 1: Infrastructure Setup with Terraform
               description: Security group for my EC2 instance
               vpc_id: vpc-0d162cc8011c8aef4
               region: 'ap-south-1'
-              access_key: AKIAYS2NQZ3RGNLQPPEP
-              secret_key: 9H3L+AYCLIArf82wPn3LXX1t7YcjtyysGfnB9Nv8
+              access_key: your access key
+              secret_key: yout secret access key
               rules:
                 - proto: tcp
                   from_port: 22
